@@ -52,10 +52,9 @@ def recieve_data():
 
 	labels = predict(model, np.array(x))
 
+	artefact_idx = []
 	for idx, label in enumerate(labels):
 		if str(label) in labels_to_remove:
-			labels[idx] = 0
-		else:
-			labels[idx] = 1
+			artefact_idx.append(idx)
 
-	return ','.join(map(str, labels))
+	return ','.join(map(str, artefact_idx))
