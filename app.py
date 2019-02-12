@@ -44,18 +44,18 @@ labels_to_remove = '''
 
 @app.route('/', methods=['POST'])
 def recieve_data():
-    data = json.loads(request.data)
+	data = json.loads(request.data)
 
-    x = np.array(data['data'])
+	x = np.array(data['data'])
 
-    x = x.reshape((*x.shape, 1))
+	x = x.reshape((*x.shape, 1))
 
-    labels = predict(model, np.array(x))
+	labels = predict(model, np.array(x))
 
-    for idx, label in enumerate(labels):
-    	if str(label) in labels_to_remove:
-		labels[idx] = 0
-	else:
-		labels[idx] = 1
+	for idx, label in enumerate(labels):
+		if str(label) in labels_to_remove:
+			labels[idx] = 0
+		else:
+			labels[idx] = 1
 
-    return ','.join(map(str, labels))
+	return ','.join(map(str, labels))
