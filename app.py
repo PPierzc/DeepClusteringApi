@@ -10,6 +10,10 @@ app = Flask(__name__)
 def recieve_data():
     data = json.loads(request.data)
 
-    labels = predict(model, np.array(data['data']))
+    x = np.array(data['data'])
+
+    x = x.reshape((*x.shape, 1))
+
+    labels = predict(model, np.array(x))
 
     return ','.join(map(str, labels))
