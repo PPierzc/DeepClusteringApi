@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import json
 import numpy as np
 
@@ -57,4 +57,4 @@ def recieve_data():
 		if str(label) in labels_to_remove:
 			artefact_idx.append(idx)
 
-	return ','.join(map(str, artefact_idx))
+	return jsonify(artefact_idx)
