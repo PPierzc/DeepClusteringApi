@@ -2,45 +2,14 @@ from flask import Flask, request, jsonify
 import json
 import numpy as np
 
-from model.loadModel import model, predict
+from model.loadModel import load_model as lm
+from assets.constants import labels_to_remove
 
 app = Flask(__name__)
 
-labels_to_remove = '''
-6
-7
-8
-10
-14
-17
-20
-23
-24
-25
-26
-27
-29
-30
-32
-33
-34
-35
-37
-40
-41
-42
-43
-46
-48
-50
-51
-52
-54
-55
-57
-58
-59
-'''.strip().split('\n')
+@app.before_first_request
+def load_model():
+	predict = lm()
 
 @app.route('/', methods=['POST'])
 def recieve_data():
@@ -50,7 +19,7 @@ def recieve_data():
 
 	x = x.reshape((*x.shape, 1))
 
-	labels = predict(model, np.array(x))
+	labels = predict(np.array(x))
 
 	artefact_idx = []
 	for idx, label in enumerate(labels):
