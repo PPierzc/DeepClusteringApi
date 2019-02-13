@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 import json
 import numpy as np
 
-from model.loadModel import load_model as lm
+from model.loadModel import loadModel as lm
 from assets.constants import labels_to_remove
 
 app = Flask(__name__)
