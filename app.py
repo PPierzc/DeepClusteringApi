@@ -7,12 +7,16 @@ from assets.constants import labels_to_remove
 
 app = Flask(__name__)
 
+predict
+
 @app.before_first_request
 def load_model():
+	global predict
 	predict = lm()
 
 @app.route('/', methods=['POST'])
 def recieve_data():
+	global predict
 	data = json.loads(request.data)
 
 	x = np.array(data['data'])
