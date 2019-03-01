@@ -29,4 +29,4 @@ The repository is ready to be launched in heroku. Simply fork the project and li
 * Display topography cluster relation
 
 ## Contribution
-For the repositiory, create a pull request with a full description of changes added.
+Fork the repositiory, create a pull request with a full description of changes added.
